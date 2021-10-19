@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>GMPUB</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+        <link rel="icon" href="dot.png"/>
+    </head>
+
+    <style>
+        @font-face {
+            font-family: 'herakles';
+            src: url('HERAKLES.ttf');
+        }
+
+        html,body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
+
+        body {
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            height: 100%;
+        }
+
+        #clock {
+            font-size: 8em;
+            letter-spacing: 0.1em;
+            color: white;
+            font-family: Roboto;
+            font-weight: 500;
+            margin-top: 10%;
+        }
+
+        #title {
+            font-size: 4em;
+            letter-spacing: 0.2em;
+            color: white;
+            font-family: 'herakles';
+            font-weight: 700;
+            margin-top: 6%;
+        }
+
+        #header {
+            font-size: 2.5em;
+            letter-spacing: 0.05em;
+            color: white;
+            font-family: 'herakles';
+            font-weight: 400;
+            margin-top: 2%;
+        }
+    </style>
+
+    <body>
+        <div id="header">Sparta Bloc</div>
+        <div id="title">
+            GMPUB
+        </div>
+        <div id="clock">
+             
+        </div>
+    </body>
+
+    <script>
+        const end_ts = 1637265600000;
+        setInterval(update, 100);
+        
+        function update() {
+            var now = new Date();
+            var remaining = end_ts - now.getTime();
+            document.getElementById("clock").innerHTML = formatRemaining(remaining);
+        }
+
+        function formatRemaining(rem) {
+            var seconds = Math.floor(rem / 1000);
+            var minutes = Math.floor(seconds / 60);
+            var hours = Math.floor(minutes / 60);
+            var days = Math.floor(hours/24);
+            var strhours = (hours % 24).toString().padStart(2, "0");
+            var strminutes = (minutes % 60).toString().padStart(2, "0");
+            var strseconds = (seconds % 60).toString().padStart(2, "0");
+            return `${days}:${strhours}:${strminutes}:${strseconds}`;
+        }
+    </script>
+</html>
